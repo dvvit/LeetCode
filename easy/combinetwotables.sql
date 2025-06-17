@@ -1,0 +1,1 @@
+select firstname,lastname,city,state from person p left outer join address a on p.personID = a.personID
