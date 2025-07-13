@@ -1,17 +1,17 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
+#include <algorithm>
 using namespace std;
 
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_set<int> seen;
-        for (int num : nums) {
-            if (seen.count(num)) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i < n - 1; i++) {
+            if(nums[i] == nums[i + 1]) {
                 return true;
             }
-            seen.insert(num);
         }
         return false;
     }
@@ -19,11 +19,8 @@ public:
 
 int main() {
     Solution sol;
-    vector<int> nums = {1, 2, 3, 4, 5};
-    cout << (sol.containsDuplicate(nums) ? "true" : "false") << endl;
-
-    vector<int> nums2 = {1, 2, 3, 2};
-    cout << (sol.containsDuplicate(nums2) ? "true" : "false") << endl;
-
+    vector<int> nums = {1, 2, 3, 1};
+    bool result = sol.containsDuplicate(nums);
+    cout << (result ? "true" : "false") << endl;
     return 0;
 }
